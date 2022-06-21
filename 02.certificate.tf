@@ -13,3 +13,8 @@ output "cert_arn" {
    }
 # 인증서가 없으면 DocumentDB에 접속 불가
 ## base64 암호화가 2번되는현상
+/* resource "aws_dms_certificate" "certtest" {
+certificate_id  = ""
+  certificate_pem = ""
+  certificate_wallet = ""
+} */

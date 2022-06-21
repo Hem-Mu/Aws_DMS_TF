@@ -44,9 +44,9 @@ resource "aws_dms_replication_instance" "rp_instance" {
   availability_zone            = "ap-northeast-2a"
   engine_version               = "3.4.6"
   #kms_key_arn                  = "arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012" # kms를 설정하지 않으면 기본 aws kms 사용
-  multi_az                     = false
+  multi_az                     = false # 멀티 가용영역 
   preferred_maintenance_window = "sun:10:30-sun:14:30" # 유지 관리 시간 범위
-  publicly_accessible          = true # 공용 IP 할당 여부
+  publicly_accessible          = false # 공용 IP 할당 여부
   replication_instance_class   = "dms.t2.micro"
   replication_instance_id      = "test-dms-replication-instance-tf"
   replication_subnet_group_id  = aws_dms_replication_subnet_group.rp_subnet.id
@@ -62,7 +62,8 @@ resource "aws_dms_replication_instance" "rp_instance" {
   depends_on = [
     aws_iam_role_policy_attachment.dms-access-for-endpoint-AmazonDMSRedshiftS3Role,
     aws_iam_role_policy_attachment.dms-cloudwatch-logs-role-AmazonDMSCloudWatchLogsRole,
-    aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole
+    aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole,
+    aws_dms_replication_subnet_group.rp_subnet
   ]
 }
 output "rp_instance_arn" {

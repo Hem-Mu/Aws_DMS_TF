@@ -24,6 +24,10 @@ resource "aws_dms_endpoint" "source" {
   tags = {
     Name = "test"
   }
+
+  depends_on = [
+    aws_dms_replication_instance.rp_instance
+  ]
 }
 output "souce_arn" {
      value = "${aws_dms_endpoint.source.endpoint_arn}" # cert arn

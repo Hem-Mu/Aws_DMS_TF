@@ -13,11 +13,15 @@ resource "aws_dms_endpoint" "target" {
   port                        = 27017
   server_name                 = data.terraform_remote_state.docdb.outputs.cluster_add # local private IP ##
   ssl_mode                    = "verify-full"
-  certificate_arn             = "arn:aws:dms:ap-northeast-2:765606275717:cert:IVTI52ZYXOJ5RDO3B6H4FJYFLPUF5YNDUKUPH2A" # aws_dms_certificate.cert.certificate_arn
+  certificate_arn             = "arn:aws:dms:ap-northeast-2:765606275717:cert:5QSXNCSFBA6NF4BEKEH2YM5K4BF7RVXL4HJBEHY"# aws_dms_certificate.cert.certificate_arn # 인증서가 없으면 DocumentDB에 접속 불가
 
   tags = {
     Name = "test"
   }
+
+  depends_on = [
+    aws_dms_endpoint.source
+  ]
 }
 output "target_arn" {
      value = "${aws_dms_endpoint.target.endpoint_arn}" # cert arn
