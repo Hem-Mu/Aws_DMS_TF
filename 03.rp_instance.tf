@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "dms-vpc-role-AmazonDMSVPCManagementRo
 }
 
 # Create a new replication instance
-resource "aws_dms_replication_instance" "test" {
+resource "aws_dms_replication_instance" "rp_instance" {
   allocated_storage            = 20 # 인스턴스 용량 5~6144
   apply_immediately            = true # 변경사항 즉시 적용
   auto_minor_version_upgrade   = true # 버전 자동 업데이트
@@ -65,3 +65,9 @@ resource "aws_dms_replication_instance" "test" {
     aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole
   ]
 }
+output "rp_instance_arn" {
+     value = "${aws_dms_replication_instance.rp_instance.replication_instance_arn}" # cert arn
+   }
+/* data "rp_instance" "arn"{
+  arn = 
+} */

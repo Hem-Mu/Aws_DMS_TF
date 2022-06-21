@@ -6,7 +6,7 @@ resource "aws_dms_endpoint" "source" {
   endpoint_type               = "source"
   engine_name                 = "mongodb"
   extra_connection_attributes = "" # 추가 연결 속성 https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib
-  # kms_key_arn                 = "arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012"
+  # kms_key_arn                 = "" # kms키를 사용하지 않으면 default key사용
 
   username                    = "dms" # DB USER
   password                    = "1234" # DB USER PW
@@ -25,3 +25,6 @@ resource "aws_dms_endpoint" "source" {
     Name = "test"
   }
 }
+output "souce_arn" {
+     value = "${aws_dms_endpoint.source.endpoint_arn}" # cert arn
+   }
