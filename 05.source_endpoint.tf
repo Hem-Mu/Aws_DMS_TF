@@ -2,7 +2,7 @@ resource "aws_dms_endpoint" "source" {
   # certificate_arn             = "arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"
   database_name               = "source" # 생성될 DB 이름
 
-  endpoint_id                 = "test-dms-endpoint-tf" # identifier
+  endpoint_id                 = "Local-to-Source" # identifier
   endpoint_type               = "source"
   engine_name                 = "mongodb"
   extra_connection_attributes = "" # 추가 연결 속성 https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib

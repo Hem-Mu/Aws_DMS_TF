@@ -2,7 +2,7 @@ resource "aws_dms_endpoint" "target" {
   # certificate_arn             = "arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"
   database_name               = "target" # 생성될 DB 이름
 
-  endpoint_id                 = "source-to-target-endpoint-tf" # identifier
+  endpoint_id                 = "Source-to-DocDB" # identifier
   endpoint_type               = "target"
   engine_name                 = "docdb"
   extra_connection_attributes = "" # 추가 연결 속성 https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib

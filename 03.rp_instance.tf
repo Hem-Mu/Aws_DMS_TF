@@ -48,7 +48,7 @@ resource "aws_dms_replication_instance" "rp_instance" {
   preferred_maintenance_window = "sun:10:30-sun:14:30" # 유지 관리 시간 범위
   publicly_accessible          = false # 공용 IP 할당 여부
   replication_instance_class   = "dms.t2.micro"
-  replication_instance_id      = "test-dms-replication-instance-tf"
+  replication_instance_id      = "dms-replication-instance"
   replication_subnet_group_id  = aws_dms_replication_subnet_group.rp_subnet.id
 
   tags = {
@@ -69,6 +69,4 @@ resource "aws_dms_replication_instance" "rp_instance" {
 output "rp_instance_arn" {
      value = "${aws_dms_replication_instance.rp_instance.replication_instance_arn}" # cert arn
    }
-/* data "rp_instance" "arn"{
-  arn = 
-} */
+   # 복제 인스턴스 생성 시 NI가 자동으로 생성되는데 terraform destroy시 NI가 함께 제거되지 않음 
