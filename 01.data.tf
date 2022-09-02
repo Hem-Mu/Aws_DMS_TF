@@ -11,12 +11,12 @@
 data "terraform_remote_state" "network" {
     backend = "local"
     config = {
-        path = "C:/Users/김햄무/Desktop/terraform/Aws/@init_network/terraform.tfstate"
+        path = ".././terraform.tfstate"
     }   
 }
 data "terraform_remote_state" "docdb" {
     backend = "local"
     config = {
-        path = "C:/Users/김햄무/Desktop/terraform/Aws/@init_network/@docDB/terraform.tfstate"
+        path = "../@docDB/terraform.tfstate"
     }   
 }
